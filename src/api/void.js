@@ -10,7 +10,6 @@ const handler = async (req, res) => {
       req.body
       )
     .then((response) => {
-      console.log(response);
       console.log(response.data);
       return res.send(response.data);
     })
@@ -18,6 +17,7 @@ const handler = async (req, res) => {
       console.log(error.response);
       return res.status(422).send(error.response.data);
     });
+    
 };
 
 module.exports = allowCors(handler);
