@@ -3,20 +3,14 @@ const allowCors = require("../allowCors");
 
 const handler = async (req, res) => {
   const ticketNumber = req.params.ticket;
-  const amount = req.body.amount;
+  console.log(req.body);
 
   return endpointKushki()
-    .delete(`/v1/charges/${ticketNumber}`, {
-      amount: {
-        subtotalIva: 0,
-        subtotalIva0: amount,
-        iva: 0,
-        ice: 0,
-        currency: "USD",
-      },
-      fullResponse: true,
-    })
+    .delete(`/v1/charges/${ticketNumber}`, 
+      req.body
+      )
     .then((response) => {
+      console.log(response);
       console.log(response.data);
       return res.send(response.data);
     })
